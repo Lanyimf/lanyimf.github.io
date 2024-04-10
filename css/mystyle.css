@@ -2,4 +2,13 @@ body, h1,h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6, p , a {
     font-family: "Noto Sans TC", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;}
-h2{color: blueviolet;}
+h2{color: #737ac1;}
+
+nav {
+    background-image: url("../assets/img/black-thread-light.png");
+    background-position: 0rem;
+  }
+
+  body {
+    background-image: url("../assets/img/dark-stripes-light.png");
+  }
