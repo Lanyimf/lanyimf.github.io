@@ -75,7 +75,7 @@ body {
 .hero-header {
     width: 100%;
     height: 100vh; /* 佔滿整個視窗高度，想變矮可以改 80vh 或 600px */
-    background-image: url('../assets/img/你的首頁大圖.jpg'); /* ★請記得改這裡的檔名 */
+    background-image: url('/assets/img/logo封面.png'); /* ★請記得改這裡的檔名 */
     background-position: center;
     background-size: cover; /* 確保圖片填滿不變形 */
     background-repeat: no-repeat;
@@ -84,7 +84,7 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white; /* 圖片上文字顏色 */
+    color: rgb(255, 255, 255); /* 圖片上文字顏色 */
     margin-top: 0; /* 貼齊頂部 */
     position: relative;
 }
@@ -178,4 +178,99 @@ body {
     .column {
         width: 100%; /* 螢幕更小時變成單欄 */
     }
+}
+/* =========================================
+   6. 修正 Hero 區塊文字對比度
+   ========================================= */
+
+.hero-header h1,
+.hero-header p.lead {
+    /* 選擇一個高對比的顏色，白色或亮黃色 */
+    color: #FFFFFF !important; 
+    /* 增加陰影讓文字更突出 (可選) */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); 
+}
+/* =========================================
+   7. 關於我區塊 - 個人照片樣式
+   ========================================= */
+
+.profile-lg {
+    max-width: 300px; /* 控制圖片最大寬度 */
+    height: auto;
+    border-radius: 0; 
+}
+
+/* 手機版調整：圖片在大螢幕上靠左，在手機版上會自動置中 */
+@media (max-width: 991.98px) {
+    .col-lg-4.text-center.mb-4.mb-lg-0 {
+        text-align: center !important; /* 確保圖片在手機板置中 */
+    }
+    .profile-lg {
+        max-width: 200px; /* 手機板圖片可以小一點 */
+    }
+}
+/* =========================================
+   8. 內容文字排版優化 (減少空曠感)
+   ========================================= */
+
+/* 針對內文段落增加行高，讓閱讀更舒適 */
+.resume-section-content p.lead {
+    line-height: 1.8; /* 將行高從預設的 1.5 增加到 1.8 */
+    margin-bottom: 1.5rem; /* 稍微增加段落之間的垂直間距 */
+}
+
+/* 確保區塊內的標題和副標題下方有足夠的留白 */
+.resume-section-content h1,
+.resume-section-content .subheading {
+    margin-bottom: 1.5rem !important; /* 確保主標題和副標題下方空間足夠 */
+}
+/* =========================================
+   9. 橫向滾動作品集樣式
+   ========================================= */
+
+.horizontal-scroll-container {
+    display: flex; /* 啟用 Flexbox，讓所有項目在同一行 */
+    overflow-x: auto; /* 啟用水平滾動 */
+    overflow-y: hidden; /* 隱藏垂直溢出 */
+    width: 100%;
+    
+    /* 增加邊界，讓滾動項目不貼齊畫面邊緣 */
+    padding: 20px; 
+    
+    /* 移除 Chrome/Safari 的預設滾動條樣式 (可選美化) */
+    /* &::-webkit-scrollbar { display: none; } */
+}
+
+.scroll-item {
+    flex-shrink: 0; /* ★ 關鍵：防止項目被壓縮 */
+    width: 250px; /* ★ 關鍵：設定每個圖片項目的固定寬度，可依需求調整 */
+    height: auto;
+    margin-right: 20px; /* 項目之間的間隔 */
+    text-align: center;
+    background-color: transparent; 
+}
+
+/* 讓圖片容器內的實際內容 (content) 有一個背景、圓角和陰影 */
+.scroll-item .content {
+    padding: 15px;
+    background-color: white; /* 作品卡的背景色 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    /* 確保圖片和標題在卡片內不被擠壓 */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* 確保所有卡片等高（如果需要） */
+}
+
+.scroll-item img {
+    margin-bottom: 10px; /* 圖片和標題間隔 */
+    border-radius: 4px;
+}
+/* =========================================
+   10. 移除內容寬度限制 (讓區塊貼齊螢幕邊緣)
+   ========================================= */
+section.resume-section {
+    /* 覆蓋主題設定，讓內容最大寬度擴展到 100% */
+    max-width: 100% !important; 
 }
