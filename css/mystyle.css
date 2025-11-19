@@ -301,3 +301,22 @@ section.resume-section {
         padding: 8px 12px;
     }
 }
+/* =========================================
+   12. 商品照片網格樣式 (Pinterest 類似效果)
+   ========================================= */
+
+.product-grid-img {
+    width: 100%;
+    /* 設定一個固定的高度，讓所有圖片看起來統一 */
+    height: 300px; 
+    /* 確保圖片填滿，可能會裁剪邊緣 (類似 Instagram/Pinterest 效果) */
+    object-fit: cover; 
+    border-radius: 8px; /* 輕微圓角 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 輕微陰影 */
+    /* 讓圖片在點擊時有放大效果 (可選) */
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-grid-img:hover {
+    transform: scale(1.03); /* 滑鼠滑過時放大 3% */
+}
