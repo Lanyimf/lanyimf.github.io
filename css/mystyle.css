@@ -274,3 +274,30 @@ section.resume-section {
     /* 覆蓋主題設定，讓內容最大寬度擴展到 100% */
     max-width: 100% !important; 
 }
+/* =========================================
+   11. 返回頂部按鈕 (Back to Top Button)
+   ========================================= */
+
+.back-to-top {
+    position: fixed;        /* 關鍵：讓按鈕固定在視窗上 */
+    right: 20px;            /* 距離右邊 20 像素 */
+    bottom: 20px;           /* 距離底部 20 像素 */
+    z-index: 99;            /* 確保按鈕在其他內容之上 */
+    display: none;          /* 預設隱藏，稍後會用 JS 讓它在滾動時出現 (可選) */
+    padding: 10px 15px;
+    border-radius: 50%;     /* 讓按鈕變圓形 */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top:hover {
+    opacity: 0.9;
+}
+
+/* 確保按鈕在手機版不會太大 */
+@media (max-width: 576px) {
+    .back-to-top {
+        right: 10px;
+        bottom: 10px;
+        padding: 8px 12px;
+    }
+}
