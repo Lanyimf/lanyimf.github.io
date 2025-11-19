@@ -12,52 +12,170 @@ nav {
   body {
     background-image: url("../assets/img/dark-stripes-light.png");
   }
-    /* 推歌時間 */
-  /* Center website */
-  .main {
-    max-width: 1000px;
-    margin: auto;
-  }
-  
-  .row {
-    margin: 8px -16px;
-  }
-  
-  /* Add padding BETWEEN each column (if you want) */
-  .row,
-  .row > .column {
-    padding: 8px;
-  }
-  
-  /* Create four equal columns that floats next to each other */
-  .column {
-    float: left;
-    width: 33%;
-  }
-  
-  /* Clear floats after rows */
-  .row:after {
+  /* =========================================
+   1. 重置版面 (把側邊欄變回上方導覽列)
+   ========================================= */
+/* 取消原本模板強制留給左側的空白 */
+@media (min-width: 992px) {
+    body {
+        padding-top: 0 !important;
+        padding-left: 0 !important; /* 關鍵：取消左側推擠 */
+    }
+
+    /* 讓導覽列變成橫向長條 */
+    #sideNav {
+        width: 100% !important;     /* 寬度滿版 */
+        height: auto !important;    /* 高度自動 */
+        flex-direction: row !important; /* 排列方向變橫的 */
+        padding: 10px 20px;         /* 增加一點內距 */
+        position: fixed;            /* 固定在最上方 */
+        top: 0;
+        left: 0;
+        z-index: 1030;
+        text-align: left;           /* 文字靠左 */
+    }
+
+    /* 修正導覽列裡的內容排列 */
+    #sideNav .navbar-brand {
+        margin: 0 !important;       /* 取消原本的大間距 */
+        display: flex;
+        align-items: center;
+    }
+
+    #sideNav .navbar-collapse {
+        display: flex;
+        align-items: center;
+        width: auto !important;
+        margin-left: auto;          /* 選單靠右對齊 */
+    }
+
+    #sideNav .navbar-nav {
+        flex-direction: row !important; /* 選單項目變橫排 */
+        width: auto !important;
+    }
+
+    #sideNav .nav-item {
+        margin-left: 1rem;
+    }
+    
+    /* 隱藏原本側邊欄的大頭貼，因為上方導覽列放不下那麼大的 */
+    #sideNav .img-profile {
+        display: none !important;
+    }
+}
+
+/* 手機版調整 */
+body {
+    padding-top: 54px; /* 留位子給手機版導覽列 */
+}
+
+/* =========================================
+   2. 滿版首頁圖片 (Hero Section)
+   ========================================= */
+.hero-header {
+    width: 100%;
+    height: 100vh; /* 佔滿整個視窗高度，想變矮可以改 80vh 或 600px */
+    background-image: url('../assets/img/你的首頁大圖.jpg'); /* ★請記得改這裡的檔名 */
+    background-position: center;
+    background-size: cover; /* 確保圖片填滿不變形 */
+    background-repeat: no-repeat;
+    background-attachment: scroll; /* 如果想要視差滾動，改成 fixed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white; /* 圖片上文字顏色 */
+    margin-top: 0; /* 貼齊頂部 */
+    position: relative;
+}
+
+/* 加一層半透明黑罩，讓文字看得清楚 (可選) */
+.hero-header::before {
     content: "";
-    display: table;
-    clear: both;
-  }
-  
-  /* Content */
-  .content {
-    background-color: rgb(242, 232, 247);
-    padding: 10px;
-  }
-  
-  /* Responsive layout - makes a two column-layout instead of four columns */
-  @media screen and (max-width: 900px) {
-    .column {
-      width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* 黑色半透明 0.5 */
+}
+
+/* 文字要在遮罩上面 */
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+/* =========================================
+   3. 導覽列 Logo 尺寸設定
+   ========================================= */
+.nav-logo {
+    height: 30px; /* 設定 Logo 高度為 35px */
+    width: auto;
+    /* 可選：讓 Logo 圓形化 */
+    /* border-radius: 50%; */ 
+}
+
+/* 確保在大型螢幕上 Logo 也能稍微大一點 */
+@media (min-width: 992px) {
+    .nav-logo {
+        height: 45px;
     }
-  }
-  
-  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
-    .column {
-      width: 100%;
+}
+/* =========================================
+   4. 調整 Logo/Navbar 邊距
+   ========================================= */
+
+/* 確保 Logo 區塊的 padding 被移除 */
+.navbar-brand {
+    /* 移除左側預設的間距 */
+    padding-left: 0 !important;
+}
+
+/* 針對大螢幕，移除導覽列容器的左右內距 */
+@media (min-width: 992px) {
+    #sideNav .container-fluid {
+        /* 將容器左右 padding 設為 0 */
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
-  }
+    
+    /* 確保 Logo 區塊能貼齊左邊，並給右邊留一點點空間 */
+    #sideNav .navbar-brand {
+        margin-left: 1rem; /* Logo 自己和左邊邊界保持一點間隔 */
+        padding-left: 0 !important;
+    }
+}
+/* =========================================
+   5. 作品集排版修復 (解決右側留白/不整齊問題)
+   ========================================= */
+
+/* 1. 確保所有區塊的寬度計算都包含邊框和內距 (這是網頁排版的標準做法) */
+.column, .column > .content {
+    box-sizing: border-box; 
+}
+
+/* 2. 設定 .column 寬度，並為其左右留出間距 */
+.column {
+    float: left;
+    width: 33.3333%; /* 確保三個欄位能平均分配 */
+    padding: 0 10px; /* 設定左右間隔為 10px */
+}
+
+/* 3. 使用負邊距讓 .row 抵消 .column 的左右間距，確保整行滿版 */
+.row {
+    margin: 0 -10px; 
+}
+
+/* 4. 針對手機版做響應式調整，確保欄位不會被擠壓 */
+@media screen and (max-width: 900px) {
+    .column {
+        width: 50%; /* 螢幕較小時變成兩欄 */
+        margin-bottom: 20px; /* 增加下方間距 */
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%; /* 螢幕更小時變成單欄 */
+    }
+}
